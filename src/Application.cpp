@@ -2,9 +2,12 @@
 
 #include <iostream>
 
+#include "Scene.h"
+
 unsigned int Application::m_Width = 800;
 unsigned int Application::m_Height = 600;
 GLFWwindow* Application::m_Window = nullptr;
+Scene* Application::m_ActiveScene = nullptr;
 
 void Application::Run() {
     Init();
@@ -49,6 +52,15 @@ void Application::Init() {
 
     // Enable VSync
     glfwSwapInterval(1);
+
+    // Test
+    m_ActiveScene = new Scene();
+
+    struct TransformComponent {
+        float x, y, z;
+    };
+
+    
 }
 
 void Application::Cleanup() {
