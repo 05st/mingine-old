@@ -1,15 +1,19 @@
 #include "Scene.h"
 
 #include "Entity.h"
+#include "Components.h"
 
-Scene::Scene() {
+Scene::Scene() {}
 
+Scene::~Scene() {}
+
+Entity Scene::CreateEntity(const std::string& tag) {
+    Entity entity = { m_Registry.create(), this };
+    entity.AddComponent<TagComponent>(tag.empty() ? "Entity" : tag);
+    entity.AddComponent<TransformComponent>();
+    return entity;
 }
 
-Scene::~Scene() {
-
-}
-
-Entity Scene::CreateEntity() {
-    return {m_Registry.create(), this};
+void Scene::DestroyEntity(Entity entity) {
+    m_Registry.destroy(entity);
 }

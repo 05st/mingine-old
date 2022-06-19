@@ -1,4 +1,4 @@
-SOURCES = $(wildcard src/*.cpp)
+SOURCES = $(wildcard src/*.cpp) $(wildcard src/Renderer/*.cpp)
 
 LIB_INCLUDES = ./lib/include/
 LIB_CPP_SOURCES = $(wildcard lib/src/*.cpp)
@@ -7,7 +7,7 @@ LIB_BINS = ./lib/bin/
 
 CC = g++
 CFLAGS = -std=c++20
-LFLAGS = -lglfw3 -lopengl32 -lgdi32
+LFLAGS = -lglfw3 -lopengl32 -lgdi32 -lassimp
 
 OUTPUT = bin/Mingine.exe
 

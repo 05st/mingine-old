@@ -2,7 +2,11 @@
 
 #include <iostream>
 
+#include "Renderer/Renderer.h"
+#include "Renderer/Shader.h"
 #include "Scene.h"
+#include "Entity.h"
+#include "Components.h"
 
 unsigned int Application::m_Width = 800;
 unsigned int Application::m_Height = 600;
@@ -54,13 +58,12 @@ void Application::Init() {
     glfwSwapInterval(1);
 
     // Test
+    Shader* s = new Shader("../shaders/vertex.glsl", "../shaders/fragment.glsl");
+    s->Bind();
+
     m_ActiveScene = new Scene();
-
-    struct TransformComponent {
-        float x, y, z;
-    };
-
-    
+    Entity e = m_ActiveScene->CreateEntity();
+    e.AddComponent<MeshComponent>(Mesh("C:/Users/Sami/Documents/Projects/physicsengine/assets/zuball/zuball.obj"));
 }
 
 void Application::Cleanup() {
@@ -70,8 +73,8 @@ void Application::Cleanup() {
 
 void Application::Loop() {
     while (!glfwWindowShouldClose(m_Window)) {
-        glClearColor(0.2f, 0.3f, 0.4f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        Renderer::Prepare();
+        Renderer::DrawScene(m_ActiveScene);
 
         glfwSwapBuffers(m_Window);
         glfwPollEvents();
