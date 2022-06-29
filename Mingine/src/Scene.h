@@ -2,11 +2,13 @@
 
 #include <entt/entt.hpp>
 
+#include "API.h"
+
 namespace Mingine {
     class Entity;
     class Renderer;
 
-    class Scene {
+    class API Scene {
     public:
         Scene();
         ~Scene();

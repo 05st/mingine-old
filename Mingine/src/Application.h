@@ -1,13 +1,9 @@
 #pragma once
 
-#ifdef BUILD_DLL
-	#define API __declspec(dllexport)
-#else
-	#define API __declspec(dllimport)
-#endif
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+
+#include "API.h"
 
 #include "Renderer/Renderer.h"
 #include "Renderer/Shader.h"
@@ -21,18 +17,17 @@ namespace Mingine {
 		Application();
 		~Application();
 
-		static void Run();
+		void Run();
+
+		virtual void Update() {};
 	private:
 		static unsigned int m_Width;
 		static unsigned int m_Height;
-		static GLFWwindow* m_Window;
 
 		static void windowSizeCallback(GLFWwindow* window, int width, int height);
 		static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
-
-		// Testing
-		static Scene* m_ActiveScene;
-		static Shader* m_Shader;
+	protected:
+		static GLFWwindow* m_Window;
 	};
 
 	Application* CreateApplication();

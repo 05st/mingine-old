@@ -9,6 +9,8 @@
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 
+#include "../API.h"
+
 namespace Mingine {
     struct Vertex {
         glm::vec3 position;
@@ -30,7 +32,7 @@ namespace Mingine {
         void setup();
     };
 
-    class Mesh {
+    class API Mesh {
     public:
         Mesh(std::string path);
         Mesh(std::vector<Vertex> vertices, std::vector<unsigned int> indices); // For only one submesh

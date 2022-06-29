@@ -7,8 +7,10 @@
 
 #include <glm/glm.hpp>
 
+#include "../API.h"
+
 namespace Mingine {
-	class Shader {
+	class API Shader {
 	public:
 		Shader(std::string vertexShaderSource, std::string fragmentShaderSource);
 		Shader(const char* vertexShaderPath, const char* fragmentShaderPath);

@@ -2,10 +2,12 @@
 
 #include <entt/entt.hpp>
 
+#include "API.h"
+
 #include "Scene.h"
 
 namespace Mingine {
-    class Entity {
+    class API Entity {
     public:
         Entity() = default;
         Entity(entt::entity handle, Scene* scene);
